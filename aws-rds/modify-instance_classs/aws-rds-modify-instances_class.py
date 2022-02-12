@@ -5,6 +5,7 @@
 # to the desired instance class on a CSV file.                               #
 # The script could be executed on a scheduled pipeline and prevent instances #
 # to be out of configuration.                                                #
+# The environment wich will run this script has to be confugured with AWSCLI #
 # Written by Diego Viane Github: https://github.com/diegoviane2              #
 ##############################################################################
 import boto3
