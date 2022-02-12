@@ -1,0 +1,4 @@
+instanceA,db.t3.large
+instanceB,db.t3.xlarge
+instanceC,db.t3.large
+instanceD,db.t3.medium
