@@ -3,7 +3,7 @@
 # Description:                                                               #
 # Set a new RATE LIMIT for a rate based WAF classic rule                     #
 #                                                                            #
-# Usage: aws-waf_classic-manege-rate-based_rules.py <RuleID>                 #  
+# Usage: aws-waf_classic-manege-rate-based_rules.py <RuleID> <RateLimit>     #  
 #                                                                            #
 # Written by Diego Viane Github: https://github.com/diegoviane2              #
 ##############################################################################
@@ -13,7 +13,7 @@ import sys
 
 # Retrive RULE ID from comand argument
 Scope_RuleId = sys.argv[1]
-
+rateLimit = sys.argv[2]
 # Set Boto3 Client
 client = boto3.client('waf')
 
@@ -30,7 +30,7 @@ def request_change_token():
     return token
 
 # Update the rate limit. Other informations are filled by current rule information
-def update_rate_limit(ruleId, changeToken, currentRuleData):
+def update_rate_limit(ruleId, rateLimit, changeToken, currentRuleData):
 
     currentNegated = currentRuleData['Rule']['MatchPredicates'][0]['Negated']
     currentType = currentRuleData['Rule']['MatchPredicates'][0]['Type']
