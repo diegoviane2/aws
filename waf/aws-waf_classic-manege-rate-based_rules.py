@@ -30,7 +30,7 @@ def request_change_token():
     return token
 
 # Update the rate limit. Other informations are filled by current rule information
-def update_rate_limit(ruleId, rateLimit, changeToken, currentRuleData):
+def update_rate_limit(ruleId, rateLim, changeToken, currentRuleData):
 
     currentNegated = currentRuleData['Rule']['MatchPredicates'][0]['Negated']
     currentType = currentRuleData['Rule']['MatchPredicates'][0]['Type']
@@ -39,8 +39,8 @@ def update_rate_limit(ruleId, rateLimit, changeToken, currentRuleData):
     response = client.update_rate_based_rule(
         RuleId=ruleId,
         ChangeToken=changeToken,
-        Updates=[{'Action':'INSERT','Predicate':{'Negated':currentNegated,'Type':currentType,'DataId':currentDataId}}],RateLimit=100)
+        Updates=[{'Action':'INSERT','Predicate':{'Negated':currentNegated,'Type':currentType,'DataId':currentDataId}}],RateLimit=rateLim)
 
     print(response)
 
-update_rate_limit(Scope_RuleId, request_change_token(), get_current_rule_data())
+update_rate_limit(Scope_RuleId, rateLimit, request_change_token(), get_current_rule_data())
